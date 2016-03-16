@@ -11,7 +11,6 @@ namespace Peon.Maps
         public string LongName { get; set; }
         [JsonProperty("short_name")]
         public string ShortName { get; set; }
-        [JsonProperty("types")]
         public List<string> Types { get; set; }
 
         public override string ToString() { return LongName; }
@@ -19,9 +18,9 @@ namespace Peon.Maps
 
     public class Rectangle
     {
-        [JsonProperty("northeast"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public LatLong NorthEast { get; set; }
-        [JsonProperty("southwest"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public LatLong SouthWest { get; set; }
 
         public LatLong NorthWest { get { return new LatLong(NorthEast.Latitude, SouthWest.Longitude); } }
@@ -33,13 +32,13 @@ namespace Peon.Maps
     
     public class Geometry
     {
-        [JsonProperty("bounds"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public Rectangle Bounds { get; set; }
-        [JsonProperty("location"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public LatLong Location { get; set; }
         [JsonProperty("location_type")]
         public string LocationType { get; set; }
-        [JsonProperty("viewport"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public Rectangle ViewPort { get; set; }
     }
 
@@ -49,11 +48,10 @@ namespace Peon.Maps
         public string FormattedAddress { get; set; }
         [JsonProperty("address_components")]
         public List<AddressComponent> AddressComponents { get; set; }
-        [JsonProperty("geometry"), TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public Geometry Geometry { get; set; }
         [JsonProperty("place_id")]
         public string PlaceId { get; set; }
-        [JsonProperty("types")]
         public List<string> Types { get; set; }
     }
     
@@ -62,10 +60,8 @@ namespace Peon.Maps
         public static GeocodeResponse Get(GeocodeRequest request) { return GoogleAPI.Get<GeocodeResponse>(request); }
         public static GeocodeResponse Get(Place place) { return GoogleAPI.Get<GeocodeResponse>(new GeocodeRequest(place)); }
         public static GeocodeResponse Get(string address) { return Get(new NamedPlace(address)); }
-
-        [JsonProperty("results")]
+        
         public List<Geocode> Results { get; set; }
-        [JsonProperty("status")]
         public string Status { get; set; }
     }
 
