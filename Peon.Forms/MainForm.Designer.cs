@@ -37,23 +37,26 @@
             this.buttonGeocodeDecode = new System.Windows.Forms.Button();
             this.propertyGridGeocode = new System.Windows.Forms.PropertyGrid();
             this.tabPageMap = new System.Windows.Forms.TabPage();
-            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
-            this.backgroundWorkerGeocode = new System.ComponentModel.BackgroundWorker();
             this.splitContainerMap = new System.Windows.Forms.SplitContainer();
+            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelMap = new System.Windows.Forms.TableLayoutPanel();
             this.buttonGenerateMap = new System.Windows.Forms.Button();
             this.propertyGridMap = new System.Windows.Forms.PropertyGrid();
+            this.backgroundWorkerGeocode = new System.ComponentModel.BackgroundWorker();
+            this.tabPageDirections = new System.Windows.Forms.TabPage();
+            this.propertyGridDirections = new System.Windows.Forms.PropertyGrid();
             labelGeocodeAddress = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageGeocode.SuspendLayout();
             this.tableLayoutPanelGeocode.SuspendLayout();
             this.tabPageMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMap)).BeginInit();
             this.splitContainerMap.Panel1.SuspendLayout();
             this.splitContainerMap.Panel2.SuspendLayout();
             this.splitContainerMap.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             this.tableLayoutPanelMap.SuspendLayout();
+            this.tabPageDirections.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelGeocodeAddress
@@ -78,6 +81,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPageGeocode);
             this.tabControl.Controls.Add(this.tabPageMap);
+            this.tabControl.Controls.Add(this.tabPageDirections);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
@@ -155,21 +159,6 @@
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxMap
-            // 
-            this.pictureBoxMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMap.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxMap.Name = "pictureBoxMap";
-            this.pictureBoxMap.Size = new System.Drawing.Size(379, 540);
-            this.pictureBoxMap.TabIndex = 0;
-            this.pictureBoxMap.TabStop = false;
-            this.pictureBoxMap.SizeChanged += new System.EventHandler(this.pictureBoxMap_SizeChanged);
-            // 
-            // backgroundWorkerGeocode
-            // 
-            this.backgroundWorkerGeocode.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerGeocode_DoWork);
-            this.backgroundWorkerGeocode.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerGeocode_RunWorkerCompleted);
-            // 
             // splitContainerMap
             // 
             this.splitContainerMap.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -186,6 +175,16 @@
             this.splitContainerMap.Size = new System.Drawing.Size(581, 540);
             this.splitContainerMap.SplitterDistance = 379;
             this.splitContainerMap.TabIndex = 1;
+            // 
+            // pictureBoxMap
+            // 
+            this.pictureBoxMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMap.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxMap.Name = "pictureBoxMap";
+            this.pictureBoxMap.Size = new System.Drawing.Size(379, 540);
+            this.pictureBoxMap.TabIndex = 0;
+            this.pictureBoxMap.TabStop = false;
+            this.pictureBoxMap.SizeChanged += new System.EventHandler(this.pictureBoxMap_SizeChanged);
             // 
             // tableLayoutPanelMap
             // 
@@ -222,6 +221,30 @@
             this.propertyGridMap.Size = new System.Drawing.Size(192, 505);
             this.propertyGridMap.TabIndex = 1;
             // 
+            // backgroundWorkerGeocode
+            // 
+            this.backgroundWorkerGeocode.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerGeocode_DoWork);
+            this.backgroundWorkerGeocode.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerGeocode_RunWorkerCompleted);
+            // 
+            // tabPageDirections
+            // 
+            this.tabPageDirections.Controls.Add(this.propertyGridDirections);
+            this.tabPageDirections.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDirections.Name = "tabPageDirections";
+            this.tabPageDirections.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageDirections.Size = new System.Drawing.Size(587, 546);
+            this.tabPageDirections.TabIndex = 2;
+            this.tabPageDirections.Text = "Directions";
+            this.tabPageDirections.UseVisualStyleBackColor = true;
+            // 
+            // propertyGridDirections
+            // 
+            this.propertyGridDirections.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGridDirections.Location = new System.Drawing.Point(3, 3);
+            this.propertyGridDirections.Name = "propertyGridDirections";
+            this.propertyGridDirections.Size = new System.Drawing.Size(581, 540);
+            this.propertyGridDirections.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,12 +260,13 @@
             this.tableLayoutPanelGeocode.ResumeLayout(false);
             this.tableLayoutPanelGeocode.PerformLayout();
             this.tabPageMap.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.splitContainerMap.Panel1.ResumeLayout(false);
             this.splitContainerMap.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMap)).EndInit();
             this.splitContainerMap.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.tableLayoutPanelMap.ResumeLayout(false);
+            this.tabPageDirections.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,6 +288,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMap;
         private System.Windows.Forms.Button buttonGenerateMap;
         private System.Windows.Forms.PropertyGrid propertyGridMap;
+        private System.Windows.Forms.TabPage tabPageDirections;
+        private System.Windows.Forms.PropertyGrid propertyGridDirections;
     }
 }
 
