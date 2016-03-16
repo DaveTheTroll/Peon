@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Peon
 {
-    public static class JsonWebService
+    public static class JsonWebServiceObsolete
     {
         public static string GetString(string url)
         {

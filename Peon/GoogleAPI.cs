@@ -1,9 +1,11 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Net;
+using System.IO;
+using System.Text;
 
 namespace Peon
 {
-    /*
     public interface IGoogleAPIRequest
     {
         string URL { get; }
@@ -11,12 +13,18 @@ namespace Peon
 
     public class GoogleAPI
     {
+        public const string serverKey = "AIzaSyAvpiuJ7xVf7Ti1ekqEovpahadvQhkXI9s";
+
         public static T Get<T>(IGoogleAPIRequest request)
         {
-            string url = string.Format(@"https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}", address, serverKey);
-            string json = JsonWebService.GetString(url);
-            return JsonConvert.DeserializeObject<T>(json);
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(request.URL);
+            WebResponse response = webRequest.GetResponse();
+            using (Stream stream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                string json = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<T>(json);
+            }
         }
     }
-    */
 }
