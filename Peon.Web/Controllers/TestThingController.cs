@@ -15,9 +15,15 @@ namespace Peon.Web.Controllers
         private ThingDbContext db = new ThingDbContext();
 
         // GET: TestThings
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(db.Things.ToList());
+            var things = from t in db.Things select t;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                things = things.Where(t => t.Name.Contains(search));
+            }
+            return View(things);
         }
 
         // GET: TestThings/Details/5
