@@ -13,7 +13,6 @@ namespace Peon.Web.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Created = c.DateTime(nullable: false),
                         Group = c.String(),
                         Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })

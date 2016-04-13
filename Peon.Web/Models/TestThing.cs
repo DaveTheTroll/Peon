@@ -7,6 +7,14 @@ namespace Peon.Web.Models
 {
     public class SubThing
     {
+        public SubThing() { }
+
+        public SubThing(int a, int b)
+        {
+            A = a;
+            B = b;
+        }
+
         public int A { get; set; }
         public int B { get; set; }
     }
@@ -30,7 +38,6 @@ namespace Peon.Web.Models
 
         public int ID { get; set; }
         public string Name { get; set; }
-        public DateTime Created { get; set; }
         public string Group { get; set; }
         public decimal Value { get; set; }
         public double Additional { get; set; }
