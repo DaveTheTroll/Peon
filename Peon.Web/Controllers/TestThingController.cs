@@ -15,13 +15,21 @@ namespace Peon.Web.Controllers
         private ThingDbContext db = new ThingDbContext();
 
         // GET: TestThings
-        public ActionResult Index(string search)
+        public ActionResult Index(string search, string group)
         {
+            var groupQuery = from t in db.Things select t.Group;
+            ViewBag.group = new SelectList(groupQuery.Distinct().ToList());
+
             var things = from t in db.Things select t;
 
             if (!string.IsNullOrEmpty(search))
             {
                 things = things.Where(t => t.Name.Contains(search));
+            }
+
+            if (!string.IsNullOrEmpty(group))
+            {
+                things = things.Where(t => t.Group == group);
             }
             return View(things);
         }

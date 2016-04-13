@@ -12,6 +12,7 @@
     @using (Html.BeginForm("Index", "TestThing", FormMethod.Get))
     {
         <p>Name: @Html.TextBox("search") <br/>
+        Group: @Html.DropDownList("group", "All"); <br/>
         <input type="submit" value="Filter" /></p>
     }
 </p>
