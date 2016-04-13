@@ -66,6 +66,28 @@
             @Html.DisplayFor(model => model.DerivedProp)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Children)
+        </dt>
+
+        <dd>
+            <table class="table">
+                @foreach (var item in Model.Children)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.C)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "ChildThing", new { id = item.ID }, null) |
+                            @Html.ActionLink("Details", "Details", "ChildThing", new { id = item.ID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "ChildThing", new { id = item.ID }, null)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </dd>
     </dl>
 </div>
 <p>

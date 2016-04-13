@@ -58,5 +58,7 @@ namespace Peon.Web.Models
         }
 
         public DbSet<TestThing> Things { get; set; }
+
+        public System.Data.Entity.DbSet<Peon.Web.Models.ChildThing> ChildThings { get; set; }
     }
 }
