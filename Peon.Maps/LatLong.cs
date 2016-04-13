@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Peon
+namespace Peon.Maps
 {
     public class Place
     { }

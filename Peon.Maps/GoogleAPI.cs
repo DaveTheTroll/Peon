@@ -4,7 +4,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 
-namespace Peon
+namespace Peon.Maps
 {
     public interface IGoogleAPIRequest
     {
