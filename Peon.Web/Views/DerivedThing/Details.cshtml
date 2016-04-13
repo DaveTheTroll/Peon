@@ -1,4 +1,5 @@
-﻿@model Peon.Web.Models.DerivedThing
+﻿@using Peon.Web.Models
+@model DerivedThing
 
 @{
     ViewBag.Title = "Details";
@@ -72,7 +73,7 @@
 
         <dd>
             <table class="table">
-                @foreach (var item in Model.Children)
+                @foreach (ChildThing item in Model.Children)
                 {
                     <tr>
                         <td>
