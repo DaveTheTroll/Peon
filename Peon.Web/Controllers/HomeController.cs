@@ -43,8 +43,8 @@ namespace Peon.Web.Controllers
         public JsonResult MarkerAjax()
         {
             DateTime now = DateTime.Now;
-            double d = (now - DateTime.Today).TotalSeconds * 2 * Math.PI / 10;
-            LatLong location = new LatLong(52.591695 + 0.001 * Math.Cos(d), -1.161152 + 0.001 * Math.Sin(d));
+            double d = (now - DateTime.Today).TotalSeconds * 2 * Math.PI / 30;
+            LatLong location = new LatLong(52.591695 + 0.0001 * Math.Cos(d), -1.161152 + 0.0001 * Math.Sin(d));
 
             return Json(location, JsonRequestBehavior.AllowGet);
         }

@@ -23,7 +23,8 @@
 
 <div id="ret"></div>
 <div id="map"></div>
-<button onclick="launchAjax()">Start</button>
+@* <button onclick="launchAjax()">Start</button>
+*@
 <script>
     var map;
     var marker;
@@ -36,7 +37,7 @@
           });
 
 
-//          launchAjax();
+          launchAjax();
       }
 
       function launchAjax()
@@ -52,7 +53,6 @@
                   if (marker == null) {
                       marker = new google.maps.Marker(
                           {
-//                              position: location,
                               map: map,
                               title: 'JSON'
                           });
@@ -60,18 +60,10 @@
                   }
 
                   marker.setPosition(location);
-        /*
-                  var info = "<h3>JSON</h3>Lat:" + location.lat() + "<br/>Lng:" + location.lng();
 
-                  var infoWindow = new google.maps.InfoWindow(
-                      {
-                          content: "<div class='infoDiv'>" + info + "</div>"
-                      }
-                      );
-        
-                  google.maps.event.addListener(marker, 'click', function () { infoWindow.open(map, marker); });
-                  */
-                  $("#ret").html(info);
+                  $("#ret").html(location.lat() + ", " + location.lng());
+
+                  setTimeout(launchAjax, 800);
               },
               failure: function (response) {
                   alert("F:" + response);
