@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Map with Ajax";
+}
+
+<h2>Map</h2>
+<style>
+    #map {
+        height: 500px;
+        width: 500px;
+    }
+
+        #map img {
+            max-width: none;
+        }
+
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+
+<div id="ret"></div>
+<div id="map"></div>
+<button onclick="launchAjax()">Start</button>
+<script>
+    var map;
+    var marker;
+
+      function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+              center: { lat: 52.591695, lng: -1.161152 },
+              zoom: 15,
+              mapTypeId: google.maps.MapTypeId.SATELLITE
+          });
+
+
+//          launchAjax();
+      }
+
+      function launchAjax()
+      {
+          $.ajax({
+              type: "GET",
+              url: "MarkerAjax",
+              data: '{}',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function (response) {
+                  var location = new google.maps.LatLng(response.lat, response.lng);
+                  if (marker == null) {
+                      marker = new google.maps.Marker(
+                          {
+//                              position: location,
+                              map: map,
+                              title: 'JSON'
+                          });
+                      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                  }
+
+                  marker.setPosition(location);
+        /*
+                  var info = "<h3>JSON</h3>Lat:" + location.lat() + "<br/>Lng:" + location.lng();
+
+                  var infoWindow = new google.maps.InfoWindow(
+                      {
+                          content: "<div class='infoDiv'>" + info + "</div>"
+                      }
+                      );
+        
+                  google.maps.event.addListener(marker, 'click', function () { infoWindow.open(map, marker); });
+                  */
+                  $("#ret").html(info);
+              },
+              failure: function (response) {
+                  alert("F:" + response);
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                  alert("E:" + xhr.status + "\r\n" + thrownError);
+              }
+          })
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz8mtQQhQTsw4jgDaXg6T3F2BqxErfnJw&callback=initMap"
+        async defer></script>
+

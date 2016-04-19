@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Map";
+}
+
+<h2>Map</h2>
+<style>
+    #map{
+        height:500px;
+        width:500px
+    }
+
+    #map img{max-width:none}
+
+    .infoDiv {
+        height: 200px;    
+        width: 300px; 
+        -webkit-user-select: none; 
+        background-color: white; 
+    }
+</style>
+
+<div id="map"></div>
+<script>
+      var map;
+      function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 52.591695, lng: -1.161152},
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+          });
+
+          var location = new google.maps.LatLng(52.591695, -1.161152);
+          var marker = new google.maps.Marker(
+              {
+                  position: location,
+                  map: map,
+                  title: 'Home'
+              });
+          //          marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+          marker.setIcon('http://icons.iconarchive.com/icons/iconshock/monster/48/monster-3-icon.png');
+
+          var infoWindow = new google.maps.InfoWindow(
+              {
+                  content: "<div class='infoDiv'><h2>Home</h2>...is where the heart is.</div>"
+              }
+              );
+
+          google.maps.event.addListener(marker, 'click', function () { infoWindow.open(map, marker); });
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz8mtQQhQTsw4jgDaXg6T3F2BqxErfnJw&callback=initMap"
+        async defer></script>
+

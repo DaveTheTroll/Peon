@@ -8,7 +8,8 @@ namespace Peon.Maps
 
     public class LatLong : Place
     {
-        public LatLong(double latitute = 0, double longitude = 0)
+        public LatLong() : this(0, 0) { }
+        public LatLong(double latitute, double longitude)
         {
             this.Latitude = latitute;
             this.Longitude = longitude;

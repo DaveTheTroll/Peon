@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peon.Maps", "Peon.Maps\Peon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peon.Game", "Peon.Game\Peon.Game.csproj", "{1BF40390-908E-4129-8FEC-DF788A3579A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JollyGood.MVC", "JollyGood.MVC\JollyGood.MVC.csproj", "{C4BBE351-254E-4E28-ABE9-EAA55825F3F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1BF40390-908E-4129-8FEC-DF788A3579A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BF40390-908E-4129-8FEC-DF788A3579A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BF40390-908E-4129-8FEC-DF788A3579A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BBE351-254E-4E28-ABE9-EAA55825F3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BBE351-254E-4E28-ABE9-EAA55825F3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BBE351-254E-4E28-ABE9-EAA55825F3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BBE351-254E-4E28-ABE9-EAA55825F3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

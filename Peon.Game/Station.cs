@@ -6,7 +6,7 @@ namespace Peon.Game
     {
     }
 
-    public class Base : Station
+    public class BaseStation : Station
     {
         public string Name { get; set; }
     }
