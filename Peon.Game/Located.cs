@@ -3,9 +3,9 @@ using Peon.Maps;
 
 namespace Peon.Game
 {
-    public class Located
+    public interface ILocated
     {
-        public int ID { get; set; }
-        public LatLong Location { get; set; }
+        int ID { get; set; }
+        LatLong Location { get; set; }
     }
 }

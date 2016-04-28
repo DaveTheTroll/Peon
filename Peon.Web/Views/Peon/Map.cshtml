@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Peon Map";
+}
+
+<h2>Map</h2>
+<style>
+    #map {
+        height: 500px;
+        width: 500px;
+    }
+
+        #map img {
+            max-width: none;
+        }
+
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <ul>
+                <li><a href="\Driver" target="_blank">Drivers</a></li>
+                <li><a href="\BaseStation\CreateSpawn" target="_blank">Create Spawner</a></li>
+            </ul>
+        </div>
+        <hr/>
+        <div id="ret"></div>
+        <hr/>
+        <div id="debug" style="font-size:60%"></div>
+    </div>
+    <div class="col-md-4" id="map"></div>
+</div>
+<script>
+    var map;
+    var markers = [];
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 52.591695, lng: -1.161152 },
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+        });
+
+
+        launchAjax();
+    }
+
+    function launchAjax() {
+        $.ajax({
+            type: "GET",
+            url: "MapAjax",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response)
+            {
+                $("#debug").html(JSON.stringify(response));
+
+                var baseStations = response.baseStations;
+                var drivers = response.drivers;
+                var itemCount = baseStations.length + drivers.length;
+
+                // Add enough markers
+                while (markers.length < itemCount)
+                {
+                    markers.push(new google.maps.Marker(
+                    {
+                        map: map
+                    }));
+                }
+                // Remove excess markers
+                for (var j = itemCount; j < markers.length; j++)
+                {
+                    markers[j].setMap(null);
+                }
+                markers.splice(itemCount);
+
+                // Update baseStations
+                var list = "";
+                for (var i = 0; i < baseStations.length; i++)
+                {
+                    var location = new google.maps.LatLng(baseStations[i].Location.lat, baseStations[i].Location.lng);
+                    var marker = markers[i];
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                    marker.setPosition(location);
+                    list = list + baseStations[i].Name + ": " + location.lat() + ", " + location.lng() + "<br/>";
+                }
+                for (var i = 0; i < drivers.length; i++)
+                {
+                    var location = new google.maps.LatLng(drivers[i].Location.lat, drivers[i].Location.lng);
+                    var marker = markers[baseStations.length + i];
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                    marker.setPosition(location);
+                    list = list + drivers[i].Name + ": " + location.lat() + ", " + location.lng() + "<br/>";
+                }
+
+                $("#ret").html(list);
+                setTimeout(launchAjax, 800);
+            },
+            failure: function (response)
+            {
+                $("#ret").html("F:" + response);
+                setTimeout(launchAjax, 5000);
+            },
+            error: function (xhr, ajaxOptions, thrownError)
+            {
+                $("#ret").html("E:" + xhr.status + "\r\n" + thrownError);
+                setTimeout(launchAjax, 5000);
+            }
+        })
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz8mtQQhQTsw4jgDaXg6T3F2BqxErfnJw&callback=initMap"
+        async defer></script>
+

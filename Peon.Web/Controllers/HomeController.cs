@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using System.Text;
 
 namespace Peon.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : JollyGood.MVC.ControllerWithJson
     {
         public ActionResult Index()
         {
@@ -47,16 +46,6 @@ namespace Peon.Web.Controllers
             LatLong location = new LatLong(52.591695 + 0.0001 * Math.Cos(d), -1.161152 + 0.0001 * Math.Sin(d));
 
             return Json(location, JsonRequestBehavior.AllowGet);
-        }
-
-        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
-        {
-            return new JollyGood.MVC.JsonResult() { Data = data, ContentType = contentType, ContentEncoding = contentEncoding, JsonRequestBehavior = behavior };
-        }
-
-        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding)
-        {
-            return new JollyGood.MVC.JsonResult() { Data = data, ContentType = contentType, ContentEncoding = contentEncoding};
         }
     }
 }

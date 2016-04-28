@@ -170,46 +170,41 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseStationController.cs" />
-    <Compile Include="Controllers\ChildThingController.cs" />
-    <Compile Include="Controllers\DerivedThingController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TestThingController.cs" />
+    <Compile Include="Controllers\PeonController.cs" />
     <Compile Include="Controllers\TrashController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604122052000_InitialCreate.cs" />
-    <Compile Include="Migrations\201604122052000_InitialCreate.Designer.cs">
-      <DependentUpon>201604122052000_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201604151406272_InitialCreate.cs" />
+    <Compile Include="Migrations\201604151406272_InitialCreate.Designer.cs">
+      <DependentUpon>201604151406272_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130822462_AddProperty.cs" />
-    <Compile Include="Migrations\201604130822462_AddProperty.Designer.cs">
-      <DependentUpon>201604130822462_AddProperty.cs</DependentUpon>
+    <Compile Include="Migrations\201604201440147_AddDrivers.cs" />
+    <Compile Include="Migrations\201604201440147_AddDrivers.Designer.cs">
+      <DependentUpon>201604201440147_AddDrivers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130826185_AddSub.cs" />
-    <Compile Include="Migrations\201604130826185_AddSub.Designer.cs">
-      <DependentUpon>201604130826185_AddSub.cs</DependentUpon>
+    <Compile Include="Migrations\201604212115198_RouteStepPolyline.cs" />
+    <Compile Include="Migrations\201604212115198_RouteStepPolyline.Designer.cs">
+      <DependentUpon>201604212115198_RouteStepPolyline.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130830556_AddChildren.cs" />
-    <Compile Include="Migrations\201604130830556_AddChildren.Designer.cs">
-      <DependentUpon>201604130830556_AddChildren.cs</DependentUpon>
+    <Compile Include="Migrations\201604281359435_SpawnStation.cs" />
+    <Compile Include="Migrations\201604281359435_SpawnStation.Designer.cs">
+      <DependentUpon>201604281359435_SpawnStation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130835119_AddDerived.cs" />
-    <Compile Include="Migrations\201604130835119_AddDerived.Designer.cs">
-      <DependentUpon>201604130835119_AddDerived.cs</DependentUpon>
+    <Compile Include="Migrations\201604281450563_SpawnStation2.cs" />
+    <Compile Include="Migrations\201604281450563_SpawnStation2.Designer.cs">
+      <DependentUpon>201604281450563_SpawnStation2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130910562_AddOther.cs" />
-    <Compile Include="Migrations\201604130910562_AddOther.Designer.cs">
-      <DependentUpon>201604130910562_AddOther.cs</DependentUpon>
+    <Compile Include="Migrations\201604281502262_SpawnStation3.cs" />
+    <Compile Include="Migrations\201604281502262_SpawnStation3.Designer.cs">
+      <DependentUpon>201604281502262_SpawnStation3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604131337098_ChangeDateType.cs" />
-    <Compile Include="Migrations\201604131337098_ChangeDateType.Designer.cs">
-      <DependentUpon>201604131337098_ChangeDateType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604131340033_RemoveChanged.cs" />
-    <Compile Include="Migrations\201604131340033_RemoveChanged.Designer.cs">
-      <DependentUpon>201604131340033_RemoveChanged.cs</DependentUpon>
+    <Compile Include="Migrations\201604281514424_SpawnStation4.cs" />
+    <Compile Include="Migrations\201604281514424_SpawnStation4.Designer.cs">
+      <DependentUpon>201604281514424_SpawnStation4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -229,7 +224,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="marker.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -282,21 +276,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Trash\Index.cshtml" />
     <Content Include="Views\Trash\Conc.cshtml" />
-    <Content Include="Views\TestThing\Create.cshtml" />
-    <Content Include="Views\TestThing\Delete.cshtml" />
-    <Content Include="Views\TestThing\Details.cshtml" />
-    <Content Include="Views\TestThing\Edit.cshtml" />
-    <Content Include="Views\TestThing\Index.cshtml" />
-    <Content Include="Views\DerivedThing\Create.cshtml" />
-    <Content Include="Views\DerivedThing\Delete.cshtml" />
-    <Content Include="Views\DerivedThing\Details.cshtml" />
-    <Content Include="Views\DerivedThing\Edit.cshtml" />
-    <Content Include="Views\DerivedThing\Index.cshtml" />
-    <Content Include="Views\ChildThing\Create.cshtml" />
-    <Content Include="Views\ChildThing\Delete.cshtml" />
-    <Content Include="Views\ChildThing\Details.cshtml" />
-    <Content Include="Views\ChildThing\Edit.cshtml" />
-    <Content Include="Views\ChildThing\Index.cshtml" />
     <Content Include="Views\BaseStation\Create.cshtml" />
     <Content Include="Views\BaseStation\Delete.cshtml" />
     <Content Include="Views\BaseStation\Details.cshtml" />
@@ -304,6 +283,15 @@
     <Content Include="Views\BaseStation\Index.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\MapWithAjax.cshtml" />
+    <Content Include="Views\Peon\Index.cshtml" />
+    <Content Include="Views\Peon\Map.cshtml" />
+    <Content Include="Views\Driver\Create.cshtml" />
+    <Content Include="Views\Driver\Delete.cshtml" />
+    <Content Include="Views\Driver\Details.cshtml" />
+    <Content Include="Views\Driver\Index.cshtml" />
+    <Content Include="Views\BaseStation\CreateSpawn.cshtml" />
+    <Content Include="Views\BaseStation\EditSpawn.cshtml" />
+    <Content Include="Views\BaseStation\DetailsSpawn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,29 +305,26 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604122052000_InitialCreate.resx">
-      <DependentUpon>201604122052000_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604151406272_InitialCreate.resx">
+      <DependentUpon>201604151406272_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130822462_AddProperty.resx">
-      <DependentUpon>201604130822462_AddProperty.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604201440147_AddDrivers.resx">
+      <DependentUpon>201604201440147_AddDrivers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130826185_AddSub.resx">
-      <DependentUpon>201604130826185_AddSub.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604212115198_RouteStepPolyline.resx">
+      <DependentUpon>201604212115198_RouteStepPolyline.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130830556_AddChildren.resx">
-      <DependentUpon>201604130830556_AddChildren.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604281359435_SpawnStation.resx">
+      <DependentUpon>201604281359435_SpawnStation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130835119_AddDerived.resx">
-      <DependentUpon>201604130835119_AddDerived.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604281450563_SpawnStation2.resx">
+      <DependentUpon>201604281450563_SpawnStation2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130910562_AddOther.resx">
-      <DependentUpon>201604130910562_AddOther.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604281502262_SpawnStation3.resx">
+      <DependentUpon>201604281502262_SpawnStation3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604131337098_ChangeDateType.resx">
-      <DependentUpon>201604131337098_ChangeDateType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604131340033_RemoveChanged.resx">
-      <DependentUpon>201604131340033_RemoveChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604281514424_SpawnStation4.resx">
+      <DependentUpon>201604281514424_SpawnStation4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -50,7 +50,7 @@ namespace Peon.Forms
                 propertyGridGeocode.SelectedObject = geocode;
                 propertyGridDirections.SelectedObject = directions;
 
-                if (geocode.Results.Count >= 1)
+                if (geocode.Results.Count > 0)
                 {
                     Map map = new Map(geocode.Results[0].Geometry.Location.ToString(), zoom:20);
                     map.Width = pictureBoxMap.Width;
@@ -82,6 +82,26 @@ namespace Peon.Forms
                     pictureBoxMap.Image = map.Image;
                 }
 
+                treeViewDirections.Nodes.Clear();
+                foreach(Route route in directions.Routes)
+                {
+                    TreeNode nodeRoute = new TreeNode(route.Summary);
+                    treeViewDirections.Nodes.Add(nodeRoute);
+                    foreach(Leg leg in route.Legs)
+                    {
+                        TreeNode nodeLeg = new TreeNode("Leg");
+                        nodeRoute.Nodes.Add(nodeLeg);
+                        nodeLeg.Nodes.Add(string.Format("{0}({1})", leg.Distance.Text, leg.Distance.Value));
+                        nodeLeg.Nodes.Add(string.Format("{0}({1})", leg.Duration.Text, leg.Duration.Value));
+                        foreach (Step step in leg.Steps)
+                        {
+                            TreeNode nodeStep = new TreeNode(step.Instructions);
+                            nodeLeg.Nodes.Add(nodeStep);
+                            nodeStep.Nodes.Add(string.Format("{0}({1})", step.Distance.Text, step.Distance.Value));
+                            nodeStep.Nodes.Add(string.Format("{0}({1})", step.Duration.Text, step.Duration.Value));
+                        }
+                    }
+                }
             }
         }
 

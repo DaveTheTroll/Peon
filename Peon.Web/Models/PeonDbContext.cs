@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace Peon.Web.Models
 {
@@ -20,5 +16,7 @@ namespace Peon.Web.Models
         }
 
         public System.Data.Entity.DbSet<Peon.Game.BaseStation> BaseStations { get; set; }
+
+        public System.Data.Entity.DbSet<Peon.Game.Driver> Drivers { get; set; }
     }
 }

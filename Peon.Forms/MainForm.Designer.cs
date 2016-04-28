@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label labelGeocodeAddress;
+            System.Windows.Forms.TabPage tabPageDirections2;
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageGeocode = new System.Windows.Forms.TabPage();
@@ -42,10 +43,12 @@
             this.tableLayoutPanelMap = new System.Windows.Forms.TableLayoutPanel();
             this.buttonGenerateMap = new System.Windows.Forms.Button();
             this.propertyGridMap = new System.Windows.Forms.PropertyGrid();
-            this.backgroundWorkerGeocode = new System.ComponentModel.BackgroundWorker();
             this.tabPageDirections = new System.Windows.Forms.TabPage();
             this.propertyGridDirections = new System.Windows.Forms.PropertyGrid();
+            this.backgroundWorkerGeocode = new System.ComponentModel.BackgroundWorker();
+            this.treeViewDirections = new System.Windows.Forms.TreeView();
             labelGeocodeAddress = new System.Windows.Forms.Label();
+            tabPageDirections2 = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPageGeocode.SuspendLayout();
             this.tableLayoutPanelGeocode.SuspendLayout();
@@ -57,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             this.tableLayoutPanelMap.SuspendLayout();
             this.tabPageDirections.SuspendLayout();
+            tabPageDirections2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelGeocodeAddress
@@ -82,6 +86,7 @@
             this.tabControl.Controls.Add(this.tabPageGeocode);
             this.tabControl.Controls.Add(this.tabPageMap);
             this.tabControl.Controls.Add(this.tabPageDirections);
+            this.tabControl.Controls.Add(tabPageDirections2);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
@@ -221,11 +226,6 @@
             this.propertyGridMap.Size = new System.Drawing.Size(192, 505);
             this.propertyGridMap.TabIndex = 1;
             // 
-            // backgroundWorkerGeocode
-            // 
-            this.backgroundWorkerGeocode.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerGeocode_DoWork);
-            this.backgroundWorkerGeocode.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerGeocode_RunWorkerCompleted);
-            // 
             // tabPageDirections
             // 
             this.tabPageDirections.Controls.Add(this.propertyGridDirections);
@@ -244,6 +244,30 @@
             this.propertyGridDirections.Name = "propertyGridDirections";
             this.propertyGridDirections.Size = new System.Drawing.Size(581, 540);
             this.propertyGridDirections.TabIndex = 0;
+            // 
+            // backgroundWorkerGeocode
+            // 
+            this.backgroundWorkerGeocode.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerGeocode_DoWork);
+            this.backgroundWorkerGeocode.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerGeocode_RunWorkerCompleted);
+            // 
+            // tabPageDirections2
+            // 
+            tabPageDirections2.Controls.Add(this.treeViewDirections);
+            tabPageDirections2.Location = new System.Drawing.Point(4, 22);
+            tabPageDirections2.Name = "tabPageDirections2";
+            tabPageDirections2.Padding = new System.Windows.Forms.Padding(3);
+            tabPageDirections2.Size = new System.Drawing.Size(587, 546);
+            tabPageDirections2.TabIndex = 3;
+            tabPageDirections2.Text = "Directions";
+            tabPageDirections2.UseVisualStyleBackColor = true;
+            // 
+            // treeViewDirections
+            // 
+            this.treeViewDirections.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDirections.Location = new System.Drawing.Point(3, 3);
+            this.treeViewDirections.Name = "treeViewDirections";
+            this.treeViewDirections.Size = new System.Drawing.Size(581, 540);
+            this.treeViewDirections.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -267,6 +291,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.tableLayoutPanelMap.ResumeLayout(false);
             this.tabPageDirections.ResumeLayout(false);
+            tabPageDirections2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +315,7 @@
         private System.Windows.Forms.PropertyGrid propertyGridMap;
         private System.Windows.Forms.TabPage tabPageDirections;
         private System.Windows.Forms.PropertyGrid propertyGridDirections;
+        private System.Windows.Forms.TreeView treeViewDirections;
     }
 }
 

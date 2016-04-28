@@ -33,7 +33,10 @@ namespace Peon.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(baseStation);
+            if (baseStation is SpawnerStation)
+                return View("DetailsSpawn", baseStation);
+            else
+                return View(baseStation);
         }
 
         // GET: BaseStation/Create
@@ -59,6 +62,31 @@ namespace Peon.Web.Controllers
             return View(baseStation);
         }
 
+        // GET: BaseStation/Create
+        public ActionResult CreateSpawn()
+        {
+            ViewBag.DestinationID = new SelectList(db.BaseStations, "ID", "Name");
+            return View();
+        }
+
+        // POST: BaseStation/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateSpawn([Bind(Include = "ID,Name,Location,Destination")] SpawnerStation baseStation)
+        {
+            if (ModelState.IsValid)
+            {
+                db.BaseStations.Add(baseStation);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.DestinationID = new SelectList(db.BaseStations, "ID", "Name");
+            return View(baseStation);
+        }
+
         // GET: BaseStation/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -71,7 +99,10 @@ namespace Peon.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(baseStation);
+            if (baseStation is SpawnerStation)
+                return View("EditSpawn", baseStation);
+            else
+                return View(baseStation);
         }
 
         // POST: BaseStation/Edit/5
@@ -79,7 +110,7 @@ namespace Peon.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Location")] BaseStation baseStation)
+        public ActionResult Edit([Bind(Include = "ID,Name,Location,Destination")] BaseStation baseStation)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +118,10 @@ namespace Peon.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(baseStation);
+            if (baseStation is SpawnerStation)
+                return View("EditSpawn", baseStation);
+            else
+                return View(baseStation);
         }
 
         // GET: BaseStation/Delete/5

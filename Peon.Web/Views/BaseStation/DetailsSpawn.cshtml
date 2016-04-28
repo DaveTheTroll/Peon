@@ -1,0 +1,42 @@
+﻿@model Peon.Game.SpawnerStation
+
+@{
+    ViewBag.Title = "DetailsSpawn";
+}
+
+<h2>DetailsSpawn</h2>
+
+<div>
+    <h4>SpawnerStation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
