@@ -39,7 +39,23 @@ namespace Peon.Maps
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
 
             return radiusOfEarth * c;
-        }       
+        }
+
+        public override int GetHashCode()
+        {
+            return Latitude.GetHashCode() ^ Longitude.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is LatLong)
+            {
+                LatLong ll = (LatLong)obj;
+                return Latitude.Equals(ll.Latitude) && Longitude.Equals(ll.Longitude);
+            }
+            else
+                return false;
+        }
     }
 
     public class NamedPlace : Place

@@ -13,7 +13,8 @@ namespace Peon.Maps
 
     public class GoogleAPI
     {
-        public const string serverKey = "AIzaSyAvpiuJ7xVf7Ti1ekqEovpahadvQhkXI9s";
+//        public const string serverKey = "AIzaSyAvpiuJ7xVf7Ti1ekqEovpahadvQhkXI9s";
+        public const string serverKey = "AIzaSyAEFUgDe055oZrJ7in1VFxqhWFTVS_Dygs";
 
         public static T Get<T>(IGoogleAPIRequest request)
         {

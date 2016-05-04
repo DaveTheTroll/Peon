@@ -38,7 +38,9 @@
 </div>
 <script>
     var map;
-    var markers = [];
+    var baseStationMarkers = [];
+    var driverMarkers = [];
+    var drivers = [];
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -64,54 +66,62 @@
 
                 var baseStations = response.baseStations;
                 var drivers = response.drivers;
-                var itemCount = baseStations.length + drivers.length;
 
                 // Add enough markers
-                while (markers.length < itemCount)
-                {
-                    markers.push(new google.maps.Marker(
+                while (baseStationMarkers.length < baseStations.length) {
+                    baseStationMarkers.push(new google.maps.Marker(
+                    {
+                        map: map
+                    }));
+                }
+                while (driverMarkers.length < drivers.length) {
+                    driverMarkers.push(new google.maps.Marker(
                     {
                         map: map
                     }));
                 }
                 // Remove excess markers
-                for (var j = itemCount; j < markers.length; j++)
-                {
-                    markers[j].setMap(null);
+                for (var j = baseStations.length; j < baseStationMarkers.length; j++) {
+                    baseStationMarkers[j].setMap(null);
                 }
-                markers.splice(itemCount);
+                baseStationMarkers.splice(baseStations.length);
+                for (var j = drivers.length; j < driverMarkers.length; j++) {
+                    driverMarkers[j].setMap(null);
+                }
+                driverMarkers.splice(drivers.length);
 
                 // Update baseStations
                 var list = "";
                 for (var i = 0; i < baseStations.length; i++)
                 {
                     var location = new google.maps.LatLng(baseStations[i].Location.lat, baseStations[i].Location.lng);
-                    var marker = markers[i];
+                    var marker = baseStationMarkers[i];
                     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
                     marker.setPosition(location);
                     list = list + baseStations[i].Name + ": " + location.lat() + ", " + location.lng() + "<br/>";
                 }
+                // Update drivers
                 for (var i = 0; i < drivers.length; i++)
                 {
                     var location = new google.maps.LatLng(drivers[i].Location.lat, drivers[i].Location.lng);
-                    var marker = markers[baseStations.length + i];
+                    var marker = driverMarkers[i];
                     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
                     marker.setPosition(location);
                     list = list + drivers[i].Name + ": " + location.lat() + ", " + location.lng() + "<br/>";
                 }
 
                 $("#ret").html(list);
-                setTimeout(launchAjax, 800);
+                setTimeout(launchAjax, 10000);  // 10s update
             },
             failure: function (response)
             {
                 $("#ret").html("F:" + response);
-                setTimeout(launchAjax, 5000);
+                setTimeout(launchAjax, 10000);
             },
             error: function (xhr, ajaxOptions, thrownError)
             {
                 $("#ret").html("E:" + xhr.status + "\r\n" + thrownError);
-                setTimeout(launchAjax, 5000);
+                setTimeout(launchAjax, 10000);
             }
         })
     }

@@ -21,28 +21,6 @@ namespace Peon.Game
         public DateTime LastUpdate { get; set; }
         public virtual List<RouteStep> Route { get; set; }
 
-        public void GenerateDirections()
-        {
-            DirectionsResponse directions = DirectionsResponse.Get(Location, Destination);
-            if (directions.Routes.Count > 0)
-            {
-                // TODO: Consider equivalent Linq
-                foreach(Leg leg in directions.Routes[0].Legs)
-                foreach(Step step in leg.Steps)
-                {
-                        Route.Add(new RouteStep()
-                        {
-                            Start = step.StartLocation,
-                            End = step.EndLocation,
-                            Distance = step.Distance.Value,
-                            Duration = TimeSpan.FromSeconds(step.Duration.Value),
-                            Polyline = step.Polyline
-                        });
-                }
-                LastUpdate = DateTime.Now;
-            }
-        }
-
         public bool Update(DateTime now)
         {
             bool changed = false;

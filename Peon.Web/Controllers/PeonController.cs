@@ -42,9 +42,10 @@ namespace Peon.Web.Controllers
                 DateTime now = DateTime.Now;
                 bool changed = false;
 
+                DriverList drivers = new DriverList(db.Drivers);
                 foreach (BaseStation station in db.BaseStations.ToList())
                 {
-                    changed = station.Update(now, new DriverList(db.Drivers)) || changed;
+                    changed = station.Update(now, drivers) || changed;
                 }
 
                 foreach (Driver driver in db.Drivers.ToList())

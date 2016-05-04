@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Peon.Maps;
 
 namespace Peon.Game
@@ -17,6 +18,89 @@ namespace Peon.Game
         public virtual bool Update(DateTime now, IDriverList drivers) { return false; }
     }
 
+    public class RouteSpec
+    {
+        public RouteSpec(LatLong source, LatLong destination)
+        {
+            Source = source;
+            Destination = destination;
+        }
+
+        public LatLong Source { get; set; }
+        public LatLong Destination { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is RouteSpec)
+            {
+                RouteSpec rs = (RouteSpec)obj;
+                return Source.Equals(rs.Source) && Destination.Equals(rs.Destination);
+            }
+            else
+                return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Source.GetHashCode() ^ Destination.GetHashCode();
+        }
+    }
+
+    public static class CalculcatedRoutes
+    {
+        static CalculcatedRoutes()
+        {
+            RouteTimeout = TimeSpan.FromMinutes(5);
+        }
+
+        static Dictionary<RouteSpec, Tuple<List<RouteStep>, DateTime>> routes = new Dictionary<RouteSpec, Tuple<List<RouteStep>, DateTime>>();
+
+        public static TimeSpan RouteTimeout { get; set; }
+        public static List<RouteStep> Get(LatLong source, LatLong destination, bool store)
+        {
+            return Get(new RouteSpec(source, destination), store);
+        }
+        public static List<RouteStep> Get(RouteSpec spec, bool store)
+        {
+            bool generate = false;
+            if (routes.ContainsKey(spec))
+            {
+                if (DateTime.Now - routes[spec].Item2 > RouteTimeout)
+                    generate = true;
+            }
+            else
+                generate = true;
+
+            if (generate)
+            {
+                List<RouteStep> route = new List<RouteStep>();
+                DirectionsResponse directions = DirectionsResponse.Get(spec.Source, spec.Destination);
+                if (directions.Routes.Count > 0)
+                {
+                    // TODO: Consider equivalent Linq
+                    foreach (Leg leg in directions.Routes[0].Legs)
+                        foreach (Step step in leg.Steps)
+                        {
+                            route.Add(new RouteStep()
+                            {
+                                Start = step.StartLocation,
+                                End = step.EndLocation,
+                                Distance = step.Distance.Value,
+                                Duration = TimeSpan.FromSeconds(step.Duration.Value),
+                                Polyline = step.Polyline
+                            });
+                        }
+                    routes[spec] = new Tuple<List<RouteStep>, DateTime>(route, DateTime.Now);
+                }
+                return new List<RouteStep>(route);
+            }
+
+            return new List<RouteStep>(routes[spec].Item1);
+
+            // Return copy of route, as the list is modified by the things that use it.
+        }
+    }
+
     public class SpawnerStation : BaseStation
     {
         public SpawnerStation()
@@ -33,10 +117,10 @@ namespace Peon.Game
         public override bool Update(DateTime now, IDriverList drivers)
         {
             Random rnd = new Random();
-            int i = 0;
             
             TimeSpan next = TimeSpan.FromSeconds(SpawnRate.TotalSeconds * (float)(-Math.Log(rnd.NextDouble())));
-            while (next < now - LastUpdate)
+            int added = 0;
+            while (next < now - LastUpdate && added < 5)
             {
                 LastUpdate += next;
 
@@ -44,12 +128,15 @@ namespace Peon.Game
                     new Driver()
                     {
                         Location = Location,
-                        Name = "Spawned [" + next.TotalSeconds.ToString() + "]" + (i++).ToString(),
+                        Name = "Spawned [" + next.TotalSeconds.ToString() + "]" + added.ToString(),
                         Destination = Destination,
-                        LastUpdate = LastUpdate
+                        LastUpdate = LastUpdate,
+                        Route = CalculcatedRoutes.Get(Location, Destination, true)
                     };
-                driver.GenerateDirections();
+                
                 drivers.Add(driver);
+
+                added++;
 
                 next = TimeSpan.FromSeconds(SpawnRate.TotalSeconds * (float)(-Math.Log(rnd.NextDouble())));
             }

@@ -53,9 +53,12 @@ namespace Peon.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                driver.GenerateDirections();
-                db.Drivers.Add(driver);
-                db.SaveChanges();
+                driver.Route = CalculcatedRoutes.Get(driver.Location, driver.Destination, false);
+                if (driver.Route.Count > 0)
+                {
+                    db.Drivers.Add(driver);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             
