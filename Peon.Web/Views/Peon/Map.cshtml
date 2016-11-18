@@ -111,17 +111,17 @@
                 }
 
                 $("#ret").html(list);
-                setTimeout(launchAjax, 10000);  // 10s update
+                setTimeout(launchAjax, 200);  // 200ms update
             },
             failure: function (response)
             {
                 $("#ret").html("F:" + response);
-                setTimeout(launchAjax, 10000);
+                setTimeout(launchAjax, 2000);
             },
             error: function (xhr, ajaxOptions, thrownError)
             {
                 $("#ret").html("E:" + xhr.status + "\r\n" + thrownError);
-                setTimeout(launchAjax, 10000);
+                setTimeout(launchAjax, 2000);
             }
         })
     }
